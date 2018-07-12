@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,10 +22,10 @@ import lombok.ToString;
 @ToString(exclude={"logins","boards","commets"})
 @EqualsAndHashCode(exclude={"logins","boards","commets"})
 @Entity
-public class Member {
+@Table(name="tb_member")
+public class Member{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	String member_id;
 	
 	String password;
@@ -33,16 +33,16 @@ public class Member {
 	String email;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="tb_member", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="member", fetch = FetchType.LAZY)
 	List<Login> logins;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="tb_member", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="member", fetch = FetchType.LAZY)
 	List<Board> boards;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="tb_member", fetch = FetchType.LAZY)
-	List<Comment> commets;
+	/*@JsonIgnore
+	@OneToMany(mappedBy="jmember", fetch = FetchType.LAZY)
+	List<Comment> commets;*/
 	
 	
 	

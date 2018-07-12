@@ -7,7 +7,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,6 +23,7 @@ import lombok.ToString;
 @ToString(exclude={"comments","files"})
 @EqualsAndHashCode(exclude={"comments","files"})
 @Entity
+@Table(name="tb_bbs")
 public class Board {
 
 	@Id
@@ -36,18 +40,20 @@ public class Board {
 	
 	String reg_dt;
 	
-	String reg_id;
+	@ManyToOne
+	@JoinColumn(name = "reg_id")
+	Member member;
 	
 	String mod_dt;
 	
 	String mod_id;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="tb_bbs" , fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="board" , fetch = FetchType.LAZY)
 	List<Comment> comments;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="tb_bbs" , fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="board" , fetch = FetchType.LAZY)
 	List<File> files;
 	
 }

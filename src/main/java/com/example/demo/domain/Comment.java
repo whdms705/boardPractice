@@ -6,11 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name="tb_comment")
 public class Comment {
 	
 	@Id
@@ -20,6 +22,7 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "bbs_seq")
 	Board board;
+	
 	
 	int sorts;
 	
