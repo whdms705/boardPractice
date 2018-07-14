@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import java.time.LocalDateTime;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,17 +20,19 @@ import com.example.demo.repository.MemberRepository;
 @RequestMapping("member")
 public class MemberController {
 	
+	@Autowired
 	MemberRepository memberRepository;
 	Log log = LogFactory.getLog(MemberController.class);
 	
 	@GetMapping("/1")
 	public void boards(){
-		Member member = null;
-		/*member.setMember_id("20121201");
-		member.setPassword("qwer123");
-		member.setEmail("eunho@osstem.com");*/
-		
-		memberRepository.save(member);
+		LocalDateTime now = LocalDateTime.now();
+		memberRepository.save(Member.builder()
+				.member_id("whdms123")
+				.password("qwe1244")
+				.email("whdms705@nate.com")
+				.build()
+				);
 		log.info("member insert");
 	}
 	
