@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.After;
@@ -27,6 +29,7 @@ public class MemberControllerTest {
 		//memberRepository.deleteAll();
 	}
 	
+	//member insert test
 	@Test
 	public void memberInsert(){
 		//given
@@ -47,6 +50,26 @@ public class MemberControllerTest {
 		
 		
 		
+	}
+	
+	//time test
+	@Test
+	public void baseTimeEntityTest(){
+		//given
+		LocalDateTime now = LocalDateTime.now();
+		memberRepository.save(Member.builder()
+				.member_id("whdms")
+				.password("qwe1244")
+				.email("whdms705@nate.com")
+				.build()
+				);
+		//when
+		List<Member> memberList = memberRepository.findAll();
+		
+		//then
+		Member member = memberList.get(memberList.size()-1);
+		assertTrue(member.getReg_dt().isAfter(now));
+		assertTrue(member.getMod_dt().isAfter(now));
 	}
 	
 	
