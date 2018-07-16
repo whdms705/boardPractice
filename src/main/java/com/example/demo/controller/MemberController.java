@@ -28,9 +28,9 @@ public class MemberController {
 	public void boards(){
 		LocalDateTime now = LocalDateTime.now();
 		memberRepository.save(Member.builder()
-				.member_id("whdms123")
-				.password("qwe1244")
-				.email("whdms705@nate.com")
+				.member_id("123123")
+				.password("123123")
+				.email("whdms705@naver.com")
 				.build()
 				);
 		log.info("member insert");
@@ -44,6 +44,7 @@ public class MemberController {
 	
 	@PostMapping("/")
 	public void saveMember(@RequestBody MemberRequestDto member){
+		log.info("postman");
 		memberRepository.save(member.toEntity());
 	}
 }
