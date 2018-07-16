@@ -4,26 +4,25 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-
-@Data
-@ToString(exclude={"logins","boards","commets"})
-@EqualsAndHashCode(exclude={"logins","boards","commets"})
+@Setter
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="tb_member")
-public class Member{
+public class Member extends BaseTimeEntity{
 	
 	@Id
 	String member_id;
@@ -44,6 +43,11 @@ public class Member{
 	@OneToMany(mappedBy="jmember", fetch = FetchType.LAZY)
 	List<Comment> commets;*/
 	
-	
+	@Builder
+	public Member(String member_id,String password,String email){
+		this.member_id=member_id;
+		this.password=password;
+		this.email=email;
+	}
 	
 }

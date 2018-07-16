@@ -17,7 +17,7 @@ public class File {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int bbs_file_seq;
+	long bbs_file_seq;
 	
 	@ManyToOne
 	@JoinColumn(name = "bbs_seq")

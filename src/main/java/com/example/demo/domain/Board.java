@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -24,11 +25,11 @@ import lombok.ToString;
 @EqualsAndHashCode(exclude={"comments","files"})
 @Entity
 @Table(name="tb_bbs")
-public class Board {
+public class Board extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int bbs_seq;
+	Long bbs_seq;
 	
 	String title;
 	
@@ -38,13 +39,10 @@ public class Board {
 	
 	String reply_yn;
 	
-	String reg_dt;
-	
 	@ManyToOne
 	@JoinColumn(name = "reg_id")
 	Member member;
 	
-	String mod_dt;
 	
 	String mod_id;
 	
@@ -55,5 +53,15 @@ public class Board {
 	@JsonIgnore
 	@OneToMany(mappedBy="board" , fetch = FetchType.LAZY)
 	List<File> files;
+	
+	@Builder
+	public Board(String title,String content,int hits,String reply_yn,String reg_id,String mod_id){
+		this.title=title;
+		this.content=content;
+		this.hits=hits;
+		this.reply_yn=reply_yn;
+		this.member.member_id=reg_id;
+		this.mod_id=mod_id;
+	}
 	
 }

@@ -17,7 +17,7 @@ public class Login {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int login_seq;
+	long login_seq;
 	
 	@ManyToOne
 	@JoinColumn(name = "member_id")

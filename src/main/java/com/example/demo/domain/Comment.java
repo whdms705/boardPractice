@@ -17,7 +17,7 @@ public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int comment_seq;
+	long comment_seq;
 	
 	@ManyToOne
 	@JoinColumn(name = "bbs_seq")
