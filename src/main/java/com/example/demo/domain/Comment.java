@@ -8,12 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name="tb_comment")
-public class Comment {
+public class Comment extends BaseTimeEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,20 +24,30 @@ public class Comment {
 	@JoinColumn(name = "bbs_seq")
 	Board board;
 	
-	
 	int sorts;
 	
 	int depth;
 	
 	String content;
 	
-	String reg_dt;
-	
-	String reg_id;
-	
-	String mod_dt;
+	@ManyToOne
+	@JoinColumn(name="reg_id")
+	Member member;
 	
 	String mod_id;
 	
+	@Builder
+	public Comment(Long bbs_seq,int sorts,int depth,String content,String reg_id,String mod_id){
+		Board board = new Board();
+		board.setBbs_seq(bbs_seq);
+		
+		Member member = new Member();
+		member.setMember_id(reg_id);
+		this.board=board;
+		this.depth=depth;
+		this.content=content;
+		this.member=member;
+		this.mod_id=mod_id;
+	}
 
 }

@@ -54,13 +54,19 @@ public class Board extends BaseTimeEntity {
 	@OneToMany(mappedBy="board" , fetch = FetchType.LAZY)
 	List<File> files;
 	
+	public Board(){
+		
+	}
+	
 	@Builder
 	public Board(String title,String content,int hits,String reply_yn,String reg_id,String mod_id){
 		this.title=title;
 		this.content=content;
 		this.hits=hits;
 		this.reply_yn=reply_yn;
-		this.member.member_id=reg_id;
+		Member member = new Member();
+		member.setMember_id(reg_id);
+		this.member=member;
 		this.mod_id=mod_id;
 	}
 	
