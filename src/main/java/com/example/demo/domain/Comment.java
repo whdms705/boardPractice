@@ -26,6 +26,8 @@ public class Comment extends BaseTimeEntity{
 	
 	int sorts;
 	
+	int cgroup;
+	
 	int depth;
 	
 	String content;
@@ -37,13 +39,15 @@ public class Comment extends BaseTimeEntity{
 	String mod_id;
 	
 	@Builder
-	public Comment(Long bbs_seq,int sorts,int depth,String content,String reg_id,String mod_id){
+	public Comment(Long bbs_seq,int sorts,int cgroup,int depth,String content,String reg_id,String mod_id){
 		Board board = new Board();
 		board.setBbs_seq(bbs_seq);
 		
 		Member member = new Member();
 		member.setMember_id(reg_id);
 		this.board=board;
+		this.sorts=sorts;
+		this.cgroup=cgroup;
 		this.depth=depth;
 		this.content=content;
 		this.member=member;
