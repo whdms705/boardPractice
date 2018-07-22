@@ -10,7 +10,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import redis.clients.jedis.JedisPoolConfig;
 
-@Configuration
+
 public class RedisConfig {
 	
 	@Value("{}")

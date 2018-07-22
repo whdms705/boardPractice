@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CommentRequestDto {
 	Long bbs_seq;
+	int cgroup;
 	int sorts;
 	int depth;
 	String content;
@@ -21,6 +22,7 @@ public class CommentRequestDto {
 		return Comment
 				.builder()
 				.bbs_seq(bbs_seq)
+				.cgroup(cgroup)
 				.sorts(sorts)
 				.depth(depth)
 				.content(content)

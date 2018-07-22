@@ -24,13 +24,13 @@ public class MemberControllerTest {
 	@Autowired
 	MemberRepository memberRepository;
 	
-	@After
+	/*@After
 	public void cleanup(){
-		//memberRepository.deleteAll();
-	}
+		memberRepository.deleteAll();
+	}*/
 	
 	//member insert test
-	@Test
+	/*@Test
 	public void memberInsert(){
 		//given
 		memberRepository.save(Member.builder()
@@ -50,7 +50,7 @@ public class MemberControllerTest {
 		
 		
 		
-	}
+	}*/
 	
 	//time test
 	@Test
@@ -58,16 +58,17 @@ public class MemberControllerTest {
 		//given
 		LocalDateTime now = LocalDateTime.now();
 		memberRepository.save(Member.builder()
-				.member_id("whdms")
-				.password("qwe1244")
-				.email("whdms705@nate.com")
+				.member_id("qwer123")
+				.password("qwer1111")
+				.email("whdms1111@nate.com")
 				.build()
 				);
 		//when
 		List<Member> memberList = memberRepository.findAll();
-		
+		System.out.println(" >> "+memberList.toString());
 		//then
 		Member member = memberList.get(memberList.size()-1);
+		System.out.println(" >> "+member.toString());
 		assertTrue(member.getReg_dt().isAfter(now));
 		assertTrue(member.getMod_dt().isAfter(now));
 	}

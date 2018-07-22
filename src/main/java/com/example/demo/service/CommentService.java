@@ -1,5 +1,16 @@
 package com.example.demo.service;
 
-public class CommentService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.request.CommentRequestDto;
+import com.example.demo.repository.CommentRepository;
+
+@Service
+public class CommentService {
+	@Autowired CommentRepository commentRepository;
+	
+	public void insertComment(CommentRequestDto comment){
+	}
+	
 }
