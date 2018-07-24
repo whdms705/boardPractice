@@ -30,7 +30,7 @@ public class Comment extends BaseTimeEntity{
 	
 	int depth;
 	
-	String content;
+	String comment;
 	
 	@ManyToOne
 	@JoinColumn(name="reg_id")
@@ -39,7 +39,7 @@ public class Comment extends BaseTimeEntity{
 	String mod_id;
 	
 	@Builder
-	public Comment(Long bbs_seq,int sorts,int cgroup,int depth,String content,String reg_id,String mod_id){
+	public Comment(Long bbs_seq,int sorts,int cgroup,int depth,String comment,String reg_id,String mod_id){
 		Board board = new Board();
 		board.setBbs_seq(bbs_seq);
 		
@@ -49,7 +49,7 @@ public class Comment extends BaseTimeEntity{
 		this.sorts=sorts;
 		this.cgroup=cgroup;
 		this.depth=depth;
-		this.content=content;
+		this.comment=comment;
 		this.member=member;
 		this.mod_id=mod_id;
 	}

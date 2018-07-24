@@ -14,7 +14,7 @@ public class CommentRequestDto {
 	int cgroup;
 	int sorts;
 	int depth;
-	String content;
+	String comment;
 	String reg_id;
 	String mod_id;
 	
@@ -25,7 +25,7 @@ public class CommentRequestDto {
 				.cgroup(cgroup)
 				.sorts(sorts)
 				.depth(depth)
-				.content(content)
+				.comment(comment)
 				.reg_id(reg_id)
 				.mod_id(mod_id)
 				.build();
