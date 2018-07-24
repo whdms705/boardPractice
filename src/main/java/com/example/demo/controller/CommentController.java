@@ -17,13 +17,13 @@ import com.example.demo.service.CommentService;
 public class CommentController {
 
 	Log log = LogFactory.getLog(CommentController.class);
-	CommentService commentService;
+	@Autowired CommentService commentService;
 	@Autowired CommentRepository commentRepository;
 	
 	@PostMapping("/")
 	public void insertComment(@RequestBody CommentRequestDto comment){
 		log.info("insert start comment");
-		//commentService.insertComment(comment);
+		commentService.insertComment(comment);
 		int gubun = commentRepository.commentGubun(comment.getCgroup(),comment.getSorts(),comment.getDepth());
 		log.info("gubun value : "+gubun);
 		log.info("insert end comment");
